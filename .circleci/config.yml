@@ -42,12 +42,10 @@ jobs:
 
 workflows:
    version: 2
-   #build_trigger:
-   #   - build
    nightly:
       triggers:
-      # Run Nightly at 3 am
+          # Run Nightly at 3 am
           - schedule:
                cron: "0 3 * * *"
-       jobs:
+      jobs:
           - build
