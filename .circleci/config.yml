@@ -39,3 +39,11 @@ jobs:
 
       # run tests!
       - run: mvn integration-test
+
+workflows:
+   version: 2
+   nightly:
+     triggers:
+     # Run Nightly at 3 am
+       - schedule:
+           cron: "0 3 * * *"
