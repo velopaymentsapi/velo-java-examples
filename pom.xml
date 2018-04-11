@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.velopayments</groupId>
-    <artifactId>examples</artifactId>
+    <artifactId>velo-java-examples</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>examples</name>
+    <name>velo-java-examples</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
