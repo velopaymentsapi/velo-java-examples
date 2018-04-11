@@ -44,8 +44,12 @@ workflows:
    version: 2
    nightly:
       triggers:
-          # Run Nightly at 3 am
+          # Run Nightly at 3 am, only build master
           - schedule:
                cron: "0 3 * * *"
+               filters:
+                   branches:
+                       only:
+                           - master
       jobs:
           - build
