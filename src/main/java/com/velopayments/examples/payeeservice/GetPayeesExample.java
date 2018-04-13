@@ -15,14 +15,19 @@ import java.io.IOException;
  */
 public class GetPayeesExample {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
+        getPayees(args[0], args[1], args[3]);
+    }
+
+    public static void getPayees(String apiKey, String apiSecret, String payorId) throws Exception {
+
         String apiUrl = "https://api.sandbox.velopayments.com/v1/payees";
 
         //Payor ID - Unique to your account
-        String payorId = "61e0690e-7d3f-4f87-8740-cf87565369d0";
+        //String payorId = "61e0690e-7d3f-4f87-8740-cf87565369d0";
 
         //Get API Access Token
-        String apiAccessToken = AuthorizationExample.getApiToken();
+        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
 
         // Query parameters
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(apiUrl)
@@ -52,5 +57,6 @@ public class GetPayeesExample {
                 httpEntity, String.class).getBody();
 
         System.out.println(apiResponse);
+
     }
 }

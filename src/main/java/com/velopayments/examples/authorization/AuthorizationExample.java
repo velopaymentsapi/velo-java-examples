@@ -16,14 +16,13 @@ import java.util.Base64;
 public class AuthorizationExample {
 
     public static void main(String[] args) throws IOException {
-        getApiToken();
-
+        getApiToken(args[0], args[1]);
     }
 
-    public static String getApiToken() throws IOException {
+    public static String getApiToken(String apiKey, String apiSecret) throws IOException {
         //Your Velo Credentials
-        String apiKey = "ebad5417-afaa-412f-9391-77dc48859351";
-        String apiSecret = "26e3b9b0-5325-4712-8a45-376c3350b3bf";
+       // String apiKey = "ebad5417-afaa-412f-9391-77dc48859351";
+       // String apiSecret = "26e3b9b0-5325-4712-8a45-376c3350b3bf";
 
         //authorization URL
         String authUrl = "https://api.sandbox.velopayments.com/oauth/token?grant_type=client_credentials";

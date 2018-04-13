@@ -1,5 +1,6 @@
 package com.velopayments.examples.payorservice;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.examples.authorization.AuthorizationExample;
 import org.springframework.http.HttpEntity;
@@ -21,13 +22,19 @@ import java.util.Map;
 public class AchFundingRequest {
 
     public static void main(String[] args) throws IOException {
+
+        achFundingRequest(args[0], args[1], args[3]);
+
+    }
+
+    private static void achFundingRequest(String apiKey, String apiSecret, String payorId) throws IOException {
         String apiUrl = "https://api.sandbox.velopayments.com/v1/payors/{payorId}/achFundingRequest/";
 
         //Payor ID - Unique to your account
-        String payorId = "61e0690e-7d3f-4f87-8740-cf87565369d0";
+       // String payorId = "61e0690e-7d3f-4f87-8740-cf87565369d0";
 
         //Get API Access Token
-        String apiAccessToken = AuthorizationExample.getApiToken();
+        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
 
         // add path parameter Payor Id to URL
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(apiUrl);
@@ -76,6 +83,5 @@ public class AchFundingRequest {
          *
          *  See SetPayorFundingBankDetailsExample to set Funding Account Details.
          */
-
     }
 }
