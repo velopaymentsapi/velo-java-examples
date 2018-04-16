@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AchFundingRequestTest extends BaseTest {
+class AchFundingRequestExampleTest extends BaseTest {
 
     @BeforeEach
     void setUp() {
@@ -18,7 +18,7 @@ class AchFundingRequestTest extends BaseTest {
     @Test
     void achFundingRequest() throws IOException {
 
-        String status = AchFundingRequest.achFundingRequest(apiKey, apiSecret, payorId);
+        String status = AchFundingRequestExample.achFundingRequest(apiKey, apiSecret, payorId);
 
         assertEquals("202", status);
     }

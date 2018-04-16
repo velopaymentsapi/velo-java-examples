@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * Created by jt on 3/29/18.
  */
-public class AchFundingRequest {
+public class AchFundingRequestExample {
 
     public static void main(String[] args) throws IOException {
         achFundingRequest(args[0], args[1], args[3]);
