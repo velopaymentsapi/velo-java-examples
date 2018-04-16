@@ -20,9 +20,6 @@ public class AuthorizationExample {
     }
 
     public static String getApiToken(String apiKey, String apiSecret) throws IOException {
-        //Your Velo Credentials
-       // String apiKey = "ebad5417-afaa-412f-9391-77dc48859351";
-       // String apiSecret = "26e3b9b0-5325-4712-8a45-376c3350b3bf";
 
         //authorization URL
         String authUrl = "https://api.sandbox.velopayments.com/oauth/token?grant_type=client_credentials";

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.examples.authorization.AuthorizationExample;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,11 +23,8 @@ public class InvitePayeeExample {
 
     }
 
-    private static void invitePayee(String apiKey, String apiSecret, String payorId) throws IOException {
+    public static String invitePayee(String apiKey, String apiSecret, String payorId) throws IOException {
         String apiUrl = "https://api.sandbox.velopayments.com/v1/payees";
-
-        //Payor ID - Unique to your account
-        //String payorId = "61e0690e-7d3f-4f87-8740-cf87565369d0";
 
         //Get API Access Token
         String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
@@ -84,7 +83,7 @@ public class InvitePayeeExample {
         String apiResponse = restTemplate.postForObject(apiUrl,
                 httpEntity, String.class);
 
-        System.out.println(apiResponse);
+        return apiResponse;
 
     }
 }

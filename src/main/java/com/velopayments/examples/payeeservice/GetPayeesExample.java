@@ -19,12 +19,9 @@ public class GetPayeesExample {
         getPayees(args[0], args[1], args[3]);
     }
 
-    public static void getPayees(String apiKey, String apiSecret, String payorId) throws Exception {
+    public static String getPayees(String apiKey, String apiSecret, String payorId) throws Exception {
 
         String apiUrl = "https://api.sandbox.velopayments.com/v1/payees";
-
-        //Payor ID - Unique to your account
-        //String payorId = "61e0690e-7d3f-4f87-8740-cf87565369d0";
 
         //Get API Access Token
         String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
@@ -57,6 +54,8 @@ public class GetPayeesExample {
                 httpEntity, String.class).getBody();
 
         System.out.println(apiResponse);
+
+        return apiResponse;
 
     }
 }

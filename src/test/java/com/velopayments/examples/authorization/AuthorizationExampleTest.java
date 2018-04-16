@@ -1,6 +1,7 @@
 package com.velopayments.examples.authorization;
 
 import com.velopayments.examples.BaseTest;
+import com.velopayments.examples.payeeservice.GetPayeesExample;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,5 @@ class AuthorizationExampleTest extends BaseTest {
 
         assertNotNull(token);
 
-        System.out.println("API Token is: " + token);
     }
 }
