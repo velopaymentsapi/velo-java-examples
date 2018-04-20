@@ -7,6 +7,52 @@ These examples are intended to show you how to use the Velo Payments Open API fo
 
 You can view the complete Velo Payments Open API documentation [here](https://velopaymentsapi.github.io/VeloOpenApi/).
 
-## Examples
+## Getting Started
+### Initial Setup
+To get started using Velo Payments, you will need to setup a Funding Bank account. This is the bank account that will be used
+to transfer money into your Velo Payments funding account. The Funding Bank account can be set or updated with the 
+[Update Funding Account API](https://velopaymentsapi.github.io/VeloOpenApi/#operation/setPayorFundingBankDetails).
 
-1. [Authorization](https://github.com/velopaymentsapi/velo-java-examples/tree/master/src/main/java/com/velopayments/examples/authorization)
+Next, you will need to submit a [ACH Funding request](https://velopaymentsapi.github.io/VeloOpenApi/#operation/payorAchFundingRequest). This will create a ACH transfer of funds into your Velo Funding account.
+
+You can add Payees to your Velo account using the [Create Payees API](https://velopaymentsapi.github.io/VeloOpenApi/#operation/createPayees).
+
+### Issuing Payments
+
+Issuing payments is a two phase process. First, you create a Payout using the submit [Payout API](https://velopaymentsapi.github.io/VeloOpenApi/#operation/submitPayout). Through this API you 
+submit payment instructions for multiple Payees. This API creates a 'Payout' with Velo. 
+
+The second step of issuing payments is to call the [Instruct Payout API](https://velopaymentsapi.github.io/VeloOpenApi/#operation/payoutInstruct). This action tells Velo to execute the payment instructions.  
+
+## Examples
+### Initial Setup
+1. [Authorization](https://github.com/velopaymentsapi/velo-java-examples/tree/master/src/main/java/com/velopayments/examples/authorization) 
+This example shows you how to use your API keys to get an authorization token from the Velo Payments Authorization API.
+2. [Update Funding Account](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payorservice/SetPayorFundingBankDetailsExample.java) 
+Update your funding account for Velo Payments.
+3. [ACH Funding request](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payorservice/AchFundingRequestExample.java)
+Example showing you how to initiate a ACH funding request to your Velo Payments funding account.
+4. [Create Payees API](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payeeservice/InvitePayeeExample.java)
+This example shows you how to invite payees to Velo Payments. 
+
+### Issuing Payouts
+1. [Payout API](http://example.com) - **to do** complete
+2. [Instruct Payout API](http://example.com) - **to do** complete
+
+### Other API Examples
+1. [Get List of Payees](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payeeservice/GetPayeesExample.java)
+Example showing you how to get a list of Payees. 
+2. [Get Payor Details](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payorservice/GetPayorDetailsByIdExample.java)
+Get details of your payor account with Velo Payments.
+3. [Get Payor Balance](http://example.com) - **to do** complete
+4. [Create Application](http://example.com) - **to do** complete
+5. [Create API Key](http://example.com) - **to do** complete
+6. [CSV Payout](http://example.com) - **to do** complete
+7. [Get Payouts for Payor](http://example.com) - **to do** complete
+8. [Get Payments for Payout](http://example.com) - **to do** complete
+9. [Get Payment](http://example.com) - **to do** complete
+10. [Get Fundings for Payor](http://example.com) - **to do** complete
+11. [Validate Invite](http://example.com) - **to do** complete
+12. [Update Invite](http://example.com) - **to do** complete
+13. [Validate Cellphone](http://example.com) - **to do** complete
+14. [Validate SMS Token](http://example.com) - **to do** complete
