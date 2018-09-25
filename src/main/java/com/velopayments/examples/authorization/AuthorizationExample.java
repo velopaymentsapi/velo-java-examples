@@ -33,6 +33,7 @@ public class AuthorizationExample {
         //Set auth header
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Authorization", "Basic " + encodedAuthString);
+        httpHeaders.add("Content-Type", "application/json");
         HttpEntity<String> httpEntity = new HttpEntity<>(null, httpHeaders);
 
         //Create Spring RestTemplate

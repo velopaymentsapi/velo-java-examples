@@ -10,11 +10,9 @@ public class BaseTest {
     public String payorId;
 
     public void getEnvVariables(){
-
         apiKey = System.getenv("API_KEY");
         apiSecret = System.getenv("API_SECRET");
         payorId = System.getenv("PAYOR_ID");
-
     }
 
 }
