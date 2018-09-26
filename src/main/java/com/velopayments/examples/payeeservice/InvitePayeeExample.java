@@ -24,7 +24,7 @@ public class InvitePayeeExample {
     }
 
     public static String invitePayee(String apiKey, String apiSecret, String payorId) throws IOException {
-        String apiUrl = "https://api.sandbox.velopayments.com/v1/payees";
+        String apiUrl = "https://api.sandbox.velopayments.com/v2/payees";
 
         //Get API Access Token
         String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
@@ -79,11 +79,11 @@ public class InvitePayeeExample {
         //Using Apache HTTPClient for clear debug logging (this step is optional)
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 
-        //Call Velo API, capture JSON response as String
-        String apiResponse = restTemplate.postForObject(apiUrl,
-                httpEntity, String.class);
+        //Call Velo API, capture HTTP Status response as String
+        ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl,
+                HttpMethod.POST, httpEntity, String.class);
 
-        return apiResponse;
+        return responseEntity.getStatusCode().toString();
 
     }
 }

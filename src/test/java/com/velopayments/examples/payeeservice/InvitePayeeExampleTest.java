@@ -21,5 +21,6 @@ class InvitePayeeExampleTest extends BaseTest {
         String result = InvitePayeeExample.invitePayee(apiKey, apiSecret, payorId);
 
         assertNotNull(result);
+        assertEquals("201", result);
     }
 }

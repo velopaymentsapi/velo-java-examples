@@ -22,7 +22,7 @@ public class AuthorizationExample {
     public static String getApiToken(String apiKey, String apiSecret) throws IOException {
 
         //authorization URL
-        String authUrl = "https://api.sandbox.velopayments.com/oauth/token?grant_type=client_credentials";
+        String authUrl = "https://api.sandbox.velopayments.com/v1/authenticate?grant_type=client_credentials";
 
         //Base64 Encode API credentials
         String authString = apiKey + ":" + apiSecret;
