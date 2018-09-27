@@ -1,29 +1,24 @@
 package com.velopayments.examples.payeeservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.velopayments.api.ApacheHttpClient;
+import com.velopayments.api.HttpClient;
 import com.velopayments.examples.authorization.AuthorizationExample;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.*;
 
-/**
- * Created by jt on 3/27/18.
- */
 public class InvitePayeeExample {
 
     public static void main(String[] args) throws IOException {
-
         invitePayee(args[0], args[1], args[2]);
-
     }
 
     public static String invitePayee(String apiKey, String apiSecret, String payorId) throws IOException {
+        return invitePayee(apiKey, apiSecret, payorId, new ApacheHttpClient());
+    }
+
+    public static String invitePayee(String apiKey, String apiSecret, String payorId , HttpClient httpClient) throws IOException {
         String apiUrl = "https://api.sandbox.velopayments.com/v2/payees";
 
         //Get API Access Token
@@ -66,24 +61,12 @@ public class InvitePayeeExample {
         ObjectMapper objectMapper = new ObjectMapper();
 
         //Set auth header
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer " + apiAccessToken);
-        httpHeaders.add("Content-Type", "application/json");
+        Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);
+        httpHeaders.add(new HttpClient.HttpHeader("Authorization", "Bearer " + apiAccessToken));
+        httpHeaders.add(new HttpClient.HttpHeader("Content-Type", "application/json"));
 
-        //add request body and http headers
-        HttpEntity<String> httpEntity = new HttpEntity<>(objectMapper.writeValueAsString(invitePayeeRequest), httpHeaders);
+        HttpClient.HttpResponse apiResponse  = httpClient.post(apiUrl, httpHeaders, objectMapper.writeValueAsString(invitePayeeRequest), HttpClient.ContentType.JSON);
 
-        //Create Spring RestTemplate
-        RestTemplate restTemplate = new RestTemplate();
-
-        //Using Apache HTTPClient for clear debug logging (this step is optional)
-        restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-
-        //Call Velo API, capture HTTP Status response as String
-        ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl,
-                HttpMethod.POST, httpEntity, String.class);
-
-        return responseEntity.getStatusCode().toString();
-
+        return String.valueOf(apiResponse.getCode());
     }
 }

@@ -17,9 +17,7 @@ class SetPayorFundingBankDetailsExampleTest extends BaseTest {
 
     @Test
     void setFundingBankDetails() throws IOException {
-
         String result = SetPayorFundingBankDetailsExample.setFundingBankDetails(apiKey, apiSecret, payorId);
-
 
         assertEquals("202", result);
     }

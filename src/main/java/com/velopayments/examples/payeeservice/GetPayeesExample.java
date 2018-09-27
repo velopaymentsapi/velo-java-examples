@@ -1,18 +1,13 @@
 package com.velopayments.examples.payeeservice;
 
+import com.velopayments.api.ApacheHttpClient;
+import com.velopayments.api.HttpClient;
 import com.velopayments.examples.authorization.AuthorizationExample;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 
-/**
- * Created by jt on 3/28/18.
- */
 public class GetPayeesExample {
 
     public static void main(String[] args) throws Exception {
@@ -20,6 +15,10 @@ public class GetPayeesExample {
     }
 
     public static String getPayees(String apiKey, String apiSecret, String payorId) throws Exception {
+        return getPayees(apiKey, apiSecret, payorId, new ApacheHttpClient());
+    }
+
+    public static String getPayees(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws Exception {
 
         String apiUrl = "https://api.sandbox.velopayments.com/v1/payees";
 
@@ -27,35 +26,19 @@ public class GetPayeesExample {
         String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
 
         // Query parameters
-        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(apiUrl)
-                // Add query parameter
-                .queryParam("payorId", payorId);
-
-        String apiUrlWithQueryParams = builder.toUriString();
+        String apiUrlWithQueryParams = apiUrl + "/?payorId=" + payorId;
 
         System.out.println("API URL with query Parameters: " + apiUrlWithQueryParams);
 
         //Set auth header
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer " + apiAccessToken);
-        httpHeaders.add("Content-Type", "application/json");
+        Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);
+        httpHeaders.add(new HttpClient.HttpHeader("Authorization", "Bearer " + apiAccessToken));
+        httpHeaders.add(new HttpClient.HttpHeader("Content-Type", "application/json"));
 
-        //add request body and http headers
-        HttpEntity<String> httpEntity = new HttpEntity<>(null, httpHeaders);
-
-        //Create Spring RestTemplate
-        RestTemplate restTemplate = new RestTemplate();
-
-        //Using Apache HTTPClient for clear debug logging (this step is optional)
-        restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-
-        //Call Velo API, capature JSON response as String
-        String apiResponse = restTemplate.exchange(apiUrlWithQueryParams, HttpMethod.GET,
-                httpEntity, String.class).getBody();
+        HttpClient.HttpResponse apiResponse = httpClient.get(apiUrlWithQueryParams, httpHeaders);
 
         System.out.println(apiResponse);
 
-        return apiResponse;
-
+        return apiResponse.getBody();
     }
 }

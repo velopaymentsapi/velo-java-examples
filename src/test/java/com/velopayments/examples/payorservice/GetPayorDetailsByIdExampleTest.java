@@ -20,6 +20,5 @@ class GetPayorDetailsByIdExampleTest extends BaseTest {
         String responsePayload = GetPayorDetailsByIdExample.getPayorDetails(apiKey, apiSecret, payorId);
 
         assertNotNull(responsePayload);
-
     }
 }

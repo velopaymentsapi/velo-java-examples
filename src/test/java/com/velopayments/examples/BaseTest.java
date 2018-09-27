@@ -1,18 +1,54 @@
 package com.velopayments.examples;
 
 /**
- * Created by jt on 4/13/18.
+ * Base Test Class - sets API credentials from System or Maven properties
  */
 public class BaseTest {
 
-    public String apiKey;
-    public String apiSecret;
-    public String payorId;
+    protected String apiKey;
+    protected String apiSecret;
+    protected String payorId;
 
+    /**
+     * Set Values via System Environment Variables or in Maven - settings.xml
+     *
+     * settings.xml example:
+     *
+     *     <profiles>
+     *         <profile>
+     *             <id>velosdk</id>
+     *             <activation>
+     *                 <activeByDefault>true</activeByDefault>
+     *             </activation>
+     *             <properties>
+     *                 <API_KEY>your key here</API_KEY>
+     *                 <API_SECRET>7your secret here</API_SECRET>
+     *                 <PAYOR_ID>your payor id here</PAYOR_ID>
+     *             </properties>
+     *         </profile>
+     *      </profiles>
+     *
+     */
     public void getEnvVariables(){
+
         apiKey = System.getenv("API_KEY");
         apiSecret = System.getenv("API_SECRET");
         payorId = System.getenv("PAYOR_ID");
-    }
 
+        if (apiKey == null || apiKey.isEmpty()) {
+            apiKey = System.getProperty("API_KEY");
+        }
+
+        if (apiSecret == null || apiSecret.isEmpty()) {
+            apiSecret = System.getProperty("API_SECRET");
+        }
+
+        if (payorId == null || payorId.isEmpty()) {
+            payorId = System.getProperty("PAYOR_ID");
+        }
+
+        if (apiKey == null || apiKey.isEmpty()){
+            System.out.println("#######  WARNING API KEY NOT SET  #######");
+        }
+    }
 }

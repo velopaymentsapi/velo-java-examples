@@ -20,6 +20,5 @@ class GetPayeesExampleTest extends BaseTest {
         String payees = GetPayeesExample.getPayees(apiKey, apiSecret, payorId);
 
         assertNotNull(payees);
-
     }
 }

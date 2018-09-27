@@ -1,24 +1,14 @@
 package com.velopayments.examples.payorservice;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.velopayments.api.ApacheHttpClient;
+import com.velopayments.api.HttpClient;
 import com.velopayments.examples.authorization.AuthorizationExample;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-/**
- * Created by jt on 3/29/18.
- */
 public class AchFundingRequestExample {
 
     public static void main(String[] args) throws IOException {
@@ -26,14 +16,18 @@ public class AchFundingRequestExample {
     }
 
     public static String achFundingRequest(String apiKey, String apiSecret, String payorId) throws IOException {
-        String apiUrl = "https://api.sandbox.velopayments.com/v1/payors/{payorId}/achFundingRequest/";
+        return achFundingRequest(apiKey, apiSecret, payorId, new ApacheHttpClient());
+    }
+
+    public static String achFundingRequest(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws IOException {
+        String apiUrl = "https://api.sandbox.velopayments.com/v1/payors/";
+        String apiAction = "/achFundingRequest/";
 
         //Get API Access Token
         String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
 
         // add path parameter Payor Id to URL
-        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(apiUrl);
-        String apiUrlWithPayorId = builder.build(payorId).toString();
+        String apiUrlWithPayorId =apiUrl + payorId + apiAction;
 
         System.out.println("API URL is: " + apiUrlWithPayorId);
 
@@ -48,23 +42,14 @@ public class AchFundingRequestExample {
         System.out.println("Request Body:" + fundingRequestJson);
 
         //Set auth header
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer " + apiAccessToken);
-        httpHeaders.add("Content-Type", "application/json");
+        Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);
+        httpHeaders.add(new HttpClient.HttpHeader("Authorization", "Bearer " + apiAccessToken));
+        httpHeaders.add(new HttpClient.HttpHeader("Content-Type", "application/json"));
 
         //add request body and http headers
-        HttpEntity<String> httpEntity = new HttpEntity<>(fundingRequestJson, httpHeaders);
+        HttpClient.HttpResponse apiResponse = httpClient.get(apiUrlWithPayorId, httpHeaders);
 
-        //Create Spring RestTemplate
-        RestTemplate restTemplate = new RestTemplate();
-
-        //Using Apache HTTPClient for clear debug logging (this step is optional)
-        restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-
-        ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrlWithPayorId,
-                HttpMethod.POST, httpEntity, String.class);
-
-        System.out.println("HTTP Status Received: " + responseEntity.getStatusCode().toString());
+        System.out.println("HTTP Status Received: " + apiResponse.getCode());
 
         /**
          * If Funding account has not been setup, you will see:
@@ -79,6 +64,6 @@ public class AchFundingRequestExample {
          *  See SetPayorFundingBankDetailsExample to set Funding Account Details.
          */
 
-        return responseEntity.getStatusCode().toString();
+        return String.valueOf(apiResponse.getCode());
     }
 }

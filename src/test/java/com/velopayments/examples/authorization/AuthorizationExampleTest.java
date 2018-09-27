@@ -1,7 +1,6 @@
 package com.velopayments.examples.authorization;
 
 import com.velopayments.examples.BaseTest;
-import com.velopayments.examples.payeeservice.GetPayeesExample;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,6 @@ class AuthorizationExampleTest extends BaseTest {
 
     @BeforeEach
     void setUp() {
-
         super.getEnvVariables();
     }
 
@@ -23,6 +21,5 @@ class AuthorizationExampleTest extends BaseTest {
         String token = AuthorizationExample.getApiToken(apiKey, apiSecret);
 
         assertNotNull(token);
-
     }
 }
