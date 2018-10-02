@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Disabled  //api has changed, needs re-write
+@Disabled
 class AchFundingRequestExampleTest extends BaseTest {
 
     @BeforeEach

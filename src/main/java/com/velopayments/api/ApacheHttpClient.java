@@ -33,6 +33,8 @@ public class ApacheHttpClient implements HttpClient {
 
         int code = underlyingResponse.getStatusLine().getStatusCode();
 
+        System.out.println("Status Code:" + code);
+
         ContentResponseHandler handler = new ContentResponseHandler();
         Content content = handler.handleResponse(underlyingResponse);
 

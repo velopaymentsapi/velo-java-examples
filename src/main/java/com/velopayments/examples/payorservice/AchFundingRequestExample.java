@@ -1,9 +1,11 @@
 package com.velopayments.examples.payorservice;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
 import com.velopayments.examples.authorization.AuthorizationExample;
+import com.velopayments.examples.fundingmanager.GetSourceAccountsExample;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -20,14 +22,21 @@ public class AchFundingRequestExample {
     }
 
     public static String achFundingRequest(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws IOException {
-        String apiUrl = "https://api.sandbox.velopayments.com/v1/payors/";
-        String apiAction = "/achFundingRequest/";
+        String apiUrl = "https://api.sandbox.velopayments.com/v1/sourceAccounts/";
+        String apiAction = "/achFundingRequest";
 
         //Get API Access Token
         String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
 
+        //get source account id
+        String sourceAccountsResponse = GetSourceAccountsExample.getSourceAccounts(apiKey, apiSecret, payorId);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readValue(sourceAccountsResponse, JsonNode.class);
+        String sourceAccountId = jsonNode.get("content").iterator().next().get("id").asText();
+
         // add path parameter Payor Id to URL
-        String apiUrlWithPayorId =apiUrl + payorId + apiAction;
+        String apiUrlWithPayorId = apiUrl + sourceAccountId + apiAction;
 
         System.out.println("API URL is: " + apiUrlWithPayorId);
 
@@ -36,7 +45,7 @@ public class AchFundingRequestExample {
         fundingRequest.put("amount", BigDecimal.valueOf(19.90));
 
         //create json object
-        ObjectMapper objectMapper = new ObjectMapper();
+       // ObjectMapper objectMapper = new ObjectMapper();
         String fundingRequestJson = objectMapper.writeValueAsString(fundingRequest);
 
         System.out.println("Request Body:" + fundingRequestJson);
@@ -47,7 +56,7 @@ public class AchFundingRequestExample {
         httpHeaders.add(new HttpClient.HttpHeader("Content-Type", "application/json"));
 
         //add request body and http headers
-        HttpClient.HttpResponse apiResponse = httpClient.get(apiUrlWithPayorId, httpHeaders);
+        HttpClient.HttpResponse apiResponse = httpClient.post(apiUrlWithPayorId, httpHeaders, fundingRequestJson, HttpClient.ContentType.JSON);
 
         System.out.println("HTTP Status Received: " + apiResponse.getCode());
 
