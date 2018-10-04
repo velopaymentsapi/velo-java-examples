@@ -56,7 +56,7 @@ public class InvitePayeeExample {
         individualToInviteName.put("lastName", "Buck" + "+" + randomString);
         individualToInvite.put("name", individualToInviteName);
 
-        individualToInvite.put("nationalIdentification", "123123123");
+        individualToInvite.put("nationalIdentification", "123456789");
         individualToInvite.put("dateOfBirth", "1970-05-12");
 
         payeeToInvite.put("individual", individualToInvite);
