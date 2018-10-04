@@ -36,7 +36,8 @@ Example showing you how to initiate a ACH funding request to your Velo Payments 
 This example shows you how to invite payees to Velo Payments. 
 
 ### Issuing Payouts
-1. [Payout Example](http://example.com) - **to do** complete
+1. [Payout Example](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payoutservice/PayoutExample.java)
+This example shows how to issue payments to payees. *Important* See README.md in package root.
 
 
 ### Other API Examples

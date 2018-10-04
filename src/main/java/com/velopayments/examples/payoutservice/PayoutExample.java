@@ -1,10 +1,11 @@
-package com.velopayments.examples.payeeservice;
+package com.velopayments.examples.payoutservice;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
 import com.velopayments.examples.authorization.AuthorizationExample;
+import com.velopayments.examples.payeeservice.GetPayeesExample;
 
 import java.math.BigDecimal;
 import java.util.*;

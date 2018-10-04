@@ -37,6 +37,8 @@ public class InvitePayeeExample {
 
         payeeToInvite.put("type", "Individual");
         payeeToInvite.put("remoteId", UUID.randomUUID().toString());
+
+        //Set to real email to accept invitation, and enable payouts.
         payeeToInvite.put("email", "joe" + "+" + randomString + "@example.com");
 
         Map<String, Object> payeeToInviteAddress = new HashMap<>();
