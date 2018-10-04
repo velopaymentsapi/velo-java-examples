@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Disabled
+//@Disabled
 class AchFundingRequestExampleTest extends BaseTest {
 
     @BeforeEach

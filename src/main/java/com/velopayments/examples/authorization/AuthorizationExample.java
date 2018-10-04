@@ -27,8 +27,6 @@ public class AuthorizationExample {
         String authString = apiKey + ":" + apiSecret;
         String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
 
-        System.out.println("Base64 Encoded Auth credentials string is: " + encodedAuthString);
-
         Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);
         httpHeaders.add(new HttpClient.HttpHeader("Authorization", "Basic " + encodedAuthString));
         httpHeaders.add(new HttpClient.HttpHeader("Content-Type", "application/json"));
@@ -43,8 +41,6 @@ public class AuthorizationExample {
 
         //Get Access Token from JSON response object
         String apiAccessToken = jsonNode.findValue("access_token").asText();
-
-        System.out.println("Access Token is: " + apiAccessToken);
 
         return apiAccessToken;
     }

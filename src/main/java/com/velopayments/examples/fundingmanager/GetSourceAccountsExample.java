@@ -21,23 +21,28 @@ public class GetSourceAccountsExample {
     }
 
     public static String getSourceAccounts(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws IOException {
+        //Get API Access Token
+        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
+
+        return getSourceAccounts(apiAccessToken, payorId, httpClient);
+    }
+
+    public static String getSourceAccounts(String apiAccessToken, String payorId) throws IOException {
+        return getSourceAccounts(apiAccessToken, payorId, new ApacheHttpClient());
+    }
+
+    public static String getSourceAccounts(String apiAccessToken, String payorId, HttpClient httpClient) throws IOException {
         String apiUrl = "https://api.sandbox.velopayments.com/v1/sourceAccounts";
 
         // Query parameters
         String apiUrlWithQueryParams = apiUrl + "/?payorId=" + payorId;
 
-        System.out.println("API URL with query Parameters: " + apiUrlWithQueryParams);
-
-        //Get API Access Token
-        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
         //Set auth header
         Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);
         httpHeaders.add(new HttpClient.HttpHeader("Authorization", "Bearer " + apiAccessToken));
         httpHeaders.add(new HttpClient.HttpHeader("Content-Type", "application/json"));
 
         HttpClient.HttpResponse apiResponse = httpClient.get(apiUrlWithQueryParams, httpHeaders);
-
-        System.out.println(apiResponse);
 
         return apiResponse.getBody();
     }

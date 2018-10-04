@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
 import com.velopayments.examples.authorization.AuthorizationExample;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -21,6 +22,9 @@ public class InvitePayeeExample {
     public static String invitePayee(String apiKey, String apiSecret, String payorId , HttpClient httpClient) throws IOException {
         String apiUrl = "https://api.sandbox.velopayments.com/v2/payees";
 
+        //random string to keep email unique
+        String randomString = RandomStringUtils.randomAlphabetic(10);
+
         //Get API Access Token
         String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
 
@@ -33,11 +37,12 @@ public class InvitePayeeExample {
 
         payeeToInvite.put("type", "Individual");
         payeeToInvite.put("remoteId", UUID.randomUUID().toString());
-        payeeToInvite.put("email", "joe@example.com");
+        payeeToInvite.put("email", "joe" + "+" + randomString + "@example.com");
 
         Map<String, Object> payeeToInviteAddress = new HashMap<>();
         payeeToInviteAddress.put("line1", "123 Main St");
         payeeToInviteAddress.put("city", "Key West");
+        payeeToInvite.put("countyOrProvince", "FL");
         payeeToInviteAddress.put("zipOrPostcode", "33458");
         payeeToInviteAddress.put("country", "US");
         payeeToInvite.put("address", payeeToInviteAddress);
@@ -46,7 +51,7 @@ public class InvitePayeeExample {
         Map<String, Object> individualToInviteName = new HashMap<>();
 
         individualToInviteName.put("firstName", "Joe");
-        individualToInviteName.put("lastName", "Buck");
+        individualToInviteName.put("lastName", "Buck" + "+" + randomString);
         individualToInvite.put("name", individualToInviteName);
 
         individualToInvite.put("nationalIdentification", "123123123");

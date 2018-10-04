@@ -29,7 +29,7 @@ public class AchFundingRequestExample {
         String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
 
         //get source account id
-        String sourceAccountsResponse = GetSourceAccountsExample.getSourceAccounts(apiKey, apiSecret, payorId);
+        String sourceAccountsResponse = GetSourceAccountsExample.getSourceAccounts(apiAccessToken, payorId);
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readValue(sourceAccountsResponse, JsonNode.class);
@@ -38,17 +38,12 @@ public class AchFundingRequestExample {
         // add path parameter Payor Id to URL
         String apiUrlWithPayorId = apiUrl + sourceAccountId + apiAction;
 
-        System.out.println("API URL is: " + apiUrlWithPayorId);
-
         Map<String, Object> fundingRequest = new HashMap<>();
 
         fundingRequest.put("amount", BigDecimal.valueOf(19.90));
 
         //create json object
-       // ObjectMapper objectMapper = new ObjectMapper();
         String fundingRequestJson = objectMapper.writeValueAsString(fundingRequest);
-
-        System.out.println("Request Body:" + fundingRequestJson);
 
         //Set auth header
         Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);
@@ -57,8 +52,6 @@ public class AchFundingRequestExample {
 
         //add request body and http headers
         HttpClient.HttpResponse apiResponse = httpClient.post(apiUrlWithPayorId, httpHeaders, fundingRequestJson, HttpClient.ContentType.JSON);
-
-        System.out.println("HTTP Status Received: " + apiResponse.getCode());
 
         /**
          * If Funding account has not been setup, you will see:

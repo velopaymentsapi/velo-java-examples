@@ -1,12 +1,15 @@
 package com.velopayments.api;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.ContentResponseHandler;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;

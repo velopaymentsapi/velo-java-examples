@@ -19,8 +19,6 @@ class GetSourceAccountsExampleTest extends BaseTest {
     void getSourceAccounts() throws IOException {
         String sourceAccounts = GetSourceAccountsExample.getSourceAccounts(apiKey, apiSecret, payorId);
 
-        System.out.println(sourceAccounts);
-
         assertNotNull(sourceAccounts);
     }
 }

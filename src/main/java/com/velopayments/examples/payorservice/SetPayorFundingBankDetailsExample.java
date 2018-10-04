@@ -30,8 +30,6 @@ public class SetPayorFundingBankDetailsExample {
         // Path parameters
         String apiUrlWithQueryParams = apiUrl + payorId + apiAction;
 
-        System.out.println("API URL with url Parameters: " + apiUrlWithQueryParams);
-
         Map<String, Object> updateRequest = new HashMap<>();
         updateRequest.put("routingNumber", "123456789");
         updateRequest.put("accountNumber", "7894561321259");
@@ -40,8 +38,6 @@ public class SetPayorFundingBankDetailsExample {
         //create json object
         ObjectMapper objectMapper = new ObjectMapper();
         String updateRequestJson = objectMapper.writeValueAsString(updateRequest);
-
-        System.out.println("Request Body: " + updateRequestJson);
 
         //Set auth header
         Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);

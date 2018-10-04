@@ -32,27 +32,17 @@ This example shows you how to use your API keys to get an authorization token fr
 Update your funding account for Velo Payments.
 3. [ACH Funding request](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payorservice/AchFundingRequestExample.java)
 Example showing you how to initiate a ACH funding request to your Velo Payments funding account.
-4. [Create Payees API](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payeeservice/InvitePayeeExample.java)
+4. [Invite Payees API](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payeeservice/InvitePayeeExample.java)
 This example shows you how to invite payees to Velo Payments. 
 
 ### Issuing Payouts
-1. [Payout API](http://example.com) - **to do** complete
-2. [Instruct Payout API](http://example.com) - **to do** complete
+1. [Payout Example](http://example.com) - **to do** complete
+
 
 ### Other API Examples
 1. [Get List of Payees](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payeeservice/GetPayeesExample.java)
 Example showing you how to get a list of Payees. 
 2. [Get Payor Details](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payorservice/GetPayorDetailsByIdExample.java)
 Get details of your payor account with Velo Payments.
-3. [Get Payor Balance](http://example.com) - **to do** complete
-4. [Create Application](http://example.com) - **to do** complete
-5. [Create API Key](http://example.com) - **to do** complete
-6. [CSV Payout](http://example.com) - **to do** complete
-7. [Get Payouts for Payor](http://example.com) - **to do** complete
-8. [Get Payments for Payout](http://example.com) - **to do** complete
-9. [Get Payment](http://example.com) - **to do** complete
-10. [Get Fundings for Payor](http://example.com) - **to do** complete
-11. [Validate Invite](http://example.com) - **to do** complete
-12. [Update Invite](http://example.com) - **to do** complete
-13. [Validate Cellphone](http://example.com) - **to do** complete
-14. [Validate SMS Token](http://example.com) - **to do** complete
+3. [Get Source Accounts](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/fundingmanager/GetSourceAccountsExample.java) - **to do** complete
+Get Funding Source Accounts listed with Velo Payments.

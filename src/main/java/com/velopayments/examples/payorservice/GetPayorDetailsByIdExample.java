@@ -29,8 +29,6 @@ public class GetPayorDetailsByIdExample {
         // Path parameters
         String apiUrlWithQueryParams = apiUrl + payorId;
 
-        System.out.println("API URL with url Parameters: " + apiUrlWithQueryParams);
-
         //Set auth header
         Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);
         httpHeaders.add(new HttpClient.HttpHeader("Authorization", "Bearer " + apiAccessToken));

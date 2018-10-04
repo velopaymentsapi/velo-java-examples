@@ -15,20 +15,20 @@ public class GetPayeesExample {
     }
 
     public static String getPayees(String apiKey, String apiSecret, String payorId) throws Exception {
-        return getPayees(apiKey, apiSecret, payorId, new ApacheHttpClient());
-    }
-
-    public static String getPayees(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws Exception {
-
-        String apiUrl = "https://api.sandbox.velopayments.com/v1/payees";
-
         //Get API Access Token
         String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
+        return getPayees(apiAccessToken, payorId);
+    }
+
+    public static String getPayees(String apiAccessToken, String payorId) throws Exception {
+        return getPayees(apiAccessToken, payorId, new ApacheHttpClient());
+    }
+
+    public static String getPayees(String apiAccessToken, String payorId, HttpClient httpClient) throws Exception {
+        String apiUrl = "https://api.sandbox.velopayments.com/v1/payees";
 
         // Query parameters
         String apiUrlWithQueryParams = apiUrl + "/?payorId=" + payorId;
-
-        System.out.println("API URL with query Parameters: " + apiUrlWithQueryParams);
 
         //Set auth header
         Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);
@@ -36,8 +36,6 @@ public class GetPayeesExample {
         httpHeaders.add(new HttpClient.HttpHeader("Content-Type", "application/json"));
 
         HttpClient.HttpResponse apiResponse = httpClient.get(apiUrlWithQueryParams, httpHeaders);
-
-        System.out.println(apiResponse);
 
         return apiResponse.getBody();
     }
