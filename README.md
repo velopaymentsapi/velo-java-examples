@@ -13,6 +13,9 @@ In order to get started using the Velo APIs you need to be onboarded as a Payor 
 initial API keys (which you’ll use in the example code). Please contact your [Velo representative](https://developer.velopayments.com/) 
 if you haven’t already received your API keys.
 
+### API Authentication
+Authentication is required for all API calls. The Authentication process is documented in the [Velo API Documentation](http://developer.velopayments.com/api/rest).
+
 ### Funding Your Velo Account
 The first step you wist to complete is funding your account. To complete this to submit 
 a [ACH Funding request](https://velopaymentsapi.github.io/VeloOpenApi/#operation/payorAchFundingRequest). This will create 

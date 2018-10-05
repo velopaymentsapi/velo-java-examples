@@ -10,6 +10,12 @@ import java.util.*;
 
 public class AuthorizationExample {
 
+    /**
+     * Usage - parameter 1 = Velo API Key, parameter 2 = Velo API Secret
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         getApiToken(args[0], args[1]);
     }

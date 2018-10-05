@@ -11,6 +11,14 @@ import java.util.*;
 
 public class InvitePayeeExample {
 
+    /**
+     * Usage - parameter 1 = Velo API Key
+     *         parameter 2 = Velo API Secret
+     *         parameter 3 = Payor ID (UUID)
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         invitePayee(args[0], args[1], args[2]);
     }

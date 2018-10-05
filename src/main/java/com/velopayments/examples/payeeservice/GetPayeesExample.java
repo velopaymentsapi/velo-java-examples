@@ -4,12 +4,21 @@ import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
 import com.velopayments.examples.authorization.AuthorizationExample;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 
 public class GetPayeesExample {
 
+    /**
+     * Usage - parameter 1 = Velo API Key
+     *         parameter 2 = Velo API Secret
+     *         parameter 3 = Payor ID (UUID)
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws Exception {
         getPayees(args[0], args[1], args[3]);
     }

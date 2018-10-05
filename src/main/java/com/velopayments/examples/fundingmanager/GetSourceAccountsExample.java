@@ -12,6 +12,14 @@ import java.util.LinkedList;
 
 public class GetSourceAccountsExample {
 
+    /**
+     * Usage - parameter 1 = Velo API Key
+     *         parameter 2 = Velo API Secret
+     *         parameter 3 = Payor ID (UUID)
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws Exception {
         getSourceAccounts(args[0], args[1], args[3]);
     }

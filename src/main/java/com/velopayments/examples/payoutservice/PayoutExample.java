@@ -7,6 +7,7 @@ import com.velopayments.api.HttpClient;
 import com.velopayments.examples.authorization.AuthorizationExample;
 import com.velopayments.examples.payeeservice.GetPayeesExample;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -14,6 +15,14 @@ public class PayoutExample {
 
     public static final String PAYOUT_URL = "https://api.sandbox.velopayments.com/v2/payouts";
 
+    /**
+     * Usage - parameter 1 = Velo API Key
+     *         parameter 2 = Velo API Secret
+     *         parameter 3 = Payor ID (UUID)
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws Exception {
         doPayout(args[0], args[1], args[3]);
     }
