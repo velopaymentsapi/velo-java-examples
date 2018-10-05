@@ -5,20 +5,23 @@ This repository contains simple step by step code examples you can use to see ho
 
 These examples are intended to show you how to use the Velo Payments Open API for common use cases.
 
-You can view the complete Velo Payments Open API documentation [here](https://velopaymentsapi.github.io/VeloOpenApi/).
+You can view the complete Velo Payments Open API documentation [here](http://developer.velopayments.com/api/rest).
 
 ## Getting Started
 ### Initial Setup
-To get started using Velo Payments, you will need to setup a Funding Bank account. This is the bank account that will be used
-to transfer money into your Velo Payments funding account. The Funding Bank account can be set or updated with the 
-[Update Funding Account API](https://velopaymentsapi.github.io/VeloOpenApi/#operation/setPayorFundingBankDetails).
+In order to get started using the Velo APIs you need to be onboarded as a Payor by the Velo team, and issued with your 
+initial API keys (which you’ll use in the example code). Please contact your [Velo representative](https://developer.velopayments.com/) 
+if you haven’t already received your API keys.
 
-Next, you will need to submit a [ACH Funding request](https://velopaymentsapi.github.io/VeloOpenApi/#operation/payorAchFundingRequest). This will create a ACH transfer of funds into your Velo Funding account.
+### Funding Your Velo Account
+The first step you wist to complete is funding your account. To complete this to submit 
+a [ACH Funding request](https://velopaymentsapi.github.io/VeloOpenApi/#operation/payorAchFundingRequest). This will create 
+a ACH transfer of funds into your Velo Funding account.
 
-You can add Payees to your Velo account using the [Create Payees API](https://velopaymentsapi.github.io/VeloOpenApi/#operation/createPayees).
+### Adding Payees
+Next you can add Payees to your Velo account using the [Create Payees API](https://velopaymentsapi.github.io/VeloOpenApi/#operation/createPayees).
 
 ### Issuing Payments
-
 Issuing payments is a two phase process. First, you create a Payout using the submit [Payout API](https://velopaymentsapi.github.io/VeloOpenApi/#operation/submitPayout). Through this API you 
 submit payment instructions for multiple Payees. This API creates a 'Payout' with Velo. 
 
@@ -38,7 +41,6 @@ This example shows you how to invite payees to Velo Payments.
 ### Issuing Payouts
 1. [Payout Example](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payoutservice/PayoutExample.java)
 This example shows how to issue payments to payees. *Important* See README.md in package root.
-
 
 ### Other API Examples
 1. [Get List of Payees](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payeeservice/GetPayeesExample.java)
