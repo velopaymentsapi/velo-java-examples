@@ -1,4 +1,4 @@
-package com.velopayments.examples.authorization;
+package com.velopayments.examples.authentication;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +8,7 @@ import com.velopayments.api.HttpClient;
 import java.io.IOException;
 import java.util.*;
 
-public class AuthorizationExample {
+public class AuthenticationExample {
 
     /**
      * Usage - parameter 1 = Velo API Key, parameter 2 = Velo API Secret

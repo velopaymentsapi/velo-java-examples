@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
-import com.velopayments.examples.authorization.AuthorizationExample;
+import com.velopayments.examples.authentication.AuthenticationExample;
 import com.velopayments.examples.fundingmanager.GetSourceAccountsExample;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class AchFundingRequestExample {
         String apiAction = "/achFundingRequest";
 
         //Get API Access Token
-        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
+        String apiAccessToken = AuthenticationExample.getApiToken(apiKey, apiSecret);
 
         //get source account id
         String sourceAccountsResponse = GetSourceAccountsExample.getSourceAccounts(apiAccessToken, payorId);

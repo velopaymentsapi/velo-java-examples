@@ -1,6 +1,6 @@
-# Authorization Example
+# Authentication Example
 
-In this example, you can see how to get an authorization token from Velo.
+In this example, you can see how to get an authentication token from Velo.
 
 Create a string comprising the API key (e.g. abcdef) and API secret (e.g. 123456) with a colon between them. E.g. abcdef:123456
 

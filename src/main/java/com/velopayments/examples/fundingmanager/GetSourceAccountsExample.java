@@ -2,7 +2,7 @@ package com.velopayments.examples.fundingmanager;
 
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
-import com.velopayments.examples.authorization.AuthorizationExample;
+import com.velopayments.examples.authentication.AuthenticationExample;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -30,7 +30,7 @@ public class GetSourceAccountsExample {
 
     public static String getSourceAccounts(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws IOException {
         //Get API Access Token
-        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
+        String apiAccessToken = AuthenticationExample.getApiToken(apiKey, apiSecret);
 
         return getSourceAccounts(apiAccessToken, payorId, httpClient);
     }

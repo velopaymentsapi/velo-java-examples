@@ -3,7 +3,7 @@ package com.velopayments.examples.payeeservice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
-import com.velopayments.examples.authorization.AuthorizationExample;
+import com.velopayments.examples.authentication.AuthenticationExample;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class InvitePayeeExample {
         String randomString = RandomStringUtils.randomAlphabetic(10);
 
         //Get API Access Token
-        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
+        String apiAccessToken = AuthenticationExample.getApiToken(apiKey, apiSecret);
 
         Map<String, Object> invitePayeeRequest = new HashMap<>();
         invitePayeeRequest.put("payorId", payorId);

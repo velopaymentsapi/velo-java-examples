@@ -3,7 +3,7 @@ package com.velopayments.examples.payorservice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
-import com.velopayments.examples.authorization.AuthorizationExample;
+import com.velopayments.examples.authentication.AuthenticationExample;
 
 import java.io.IOException;
 import java.util.*;
@@ -32,7 +32,7 @@ public class SetPayorFundingBankDetailsExample {
         String apiAction = "/payorFundingBankDetailsUpdate";
 
         //Get API Access Token
-        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
+        String apiAccessToken = AuthenticationExample.getApiToken(apiKey, apiSecret);
 
         // Path parameters
         String apiUrlWithQueryParams = apiUrl + payorId + apiAction;

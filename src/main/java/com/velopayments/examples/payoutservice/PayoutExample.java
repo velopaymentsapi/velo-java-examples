@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
-import com.velopayments.examples.authorization.AuthorizationExample;
+import com.velopayments.examples.authentication.AuthenticationExample;
 import com.velopayments.examples.payeeservice.GetPayeesExample;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class PayoutExample {
     public static String doPayout(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws Exception {
 
         //Get API Access Token
-        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
+        String apiAccessToken = AuthenticationExample.getApiToken(apiKey, apiSecret);
 
         String getPayeesReponse = GetPayeesExample.getPayees(apiAccessToken, payorId);
 

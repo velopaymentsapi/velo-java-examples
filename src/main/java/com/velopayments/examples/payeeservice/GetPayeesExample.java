@@ -2,7 +2,7 @@ package com.velopayments.examples.payeeservice;
 
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
-import com.velopayments.examples.authorization.AuthorizationExample;
+import com.velopayments.examples.authentication.AuthenticationExample;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -25,7 +25,7 @@ public class GetPayeesExample {
 
     public static String getPayees(String apiKey, String apiSecret, String payorId) throws Exception {
         //Get API Access Token
-        String apiAccessToken = AuthorizationExample.getApiToken(apiKey, apiSecret);
+        String apiAccessToken = AuthenticationExample.getApiToken(apiKey, apiSecret);
         return getPayees(apiAccessToken, payorId);
     }
 

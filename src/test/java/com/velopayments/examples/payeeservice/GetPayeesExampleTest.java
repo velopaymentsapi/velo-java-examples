@@ -1,7 +1,6 @@
 package com.velopayments.examples.payeeservice;
 
 import com.velopayments.examples.BaseTest;
-import com.velopayments.examples.authorization.AuthorizationExample;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.velopayments.examples.authorization;
+package com.velopayments.examples.authentication;
 
 import com.velopayments.examples.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AuthorizationExampleTest extends BaseTest {
+class AuthenticationExampleTest extends BaseTest {
 
     @BeforeEach
     void setUp() {
@@ -18,7 +18,7 @@ class AuthorizationExampleTest extends BaseTest {
     @Test
     void getApiToken() throws IOException {
 
-        String token = AuthorizationExample.getApiToken(apiKey, apiSecret);
+        String token = AuthenticationExample.getApiToken(apiKey, apiSecret);
 
         assertNotNull(token);
     }
