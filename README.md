@@ -36,11 +36,9 @@ The second step of issuing payments is to call the [Instruct Payout API](https:/
 ### Initial Setup
 1. [Authorization](https://github.com/velopaymentsapi/velo-java-examples/tree/master/src/main/java/com/velopayments/examples/authorization) 
 This example shows you how to use your API keys to get an authorization token from the Velo Payments Authorization API.
-2. [Update Funding Account](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payorservice/SetPayorFundingBankDetailsExample.java) 
-Update your funding account for Velo Payments.
-3. [ACH Funding request](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payorservice/AchFundingRequestExample.java)
+2. [ACH Funding request](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payorservice/AchFundingRequestExample.java)
 Example showing you how to initiate a ACH funding request to your Velo Payments funding account.
-4. [Invite Payees API](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payeeservice/InvitePayeeExample.java)
+3. [Invite Payees API](https://github.com/velopaymentsapi/velo-java-examples/blob/master/src/main/java/com/velopayments/examples/payeeservice/InvitePayeeExample.java)
 This example shows you how to invite payees to Velo Payments. 
 
 ### Issuing Payouts
