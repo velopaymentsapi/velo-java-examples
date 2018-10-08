@@ -11,6 +11,15 @@
     <name>velo-java-examples</name>
     <description>Velo Payments Open API Use Examples</description>
 
+    <organization>
+        <name>Velo Payments Inc.</name>
+        <url>https://velopayments.com/</url>
+    </organization>
+
+    <licenses>
+        <license>http://www.apache.org/licenses/LICENSE-2.0</license>
+    </licenses>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
