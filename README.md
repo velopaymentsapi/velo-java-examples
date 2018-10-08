@@ -8,6 +8,10 @@ These examples are intended to show you how to use the Velo Payments Open API fo
 You can view the complete Velo Payments Open API documentation [here](http://developer.velopayments.com/api/rest).
 
 ## Getting Started
+
+### Java Requirements
+Java 1.8 or higher is required to run examples. Java 1.8 Update 162 or higher is recommended. 
+
 ### Initial Setup
 In order to get started using the Velo APIs you need to be onboarded as a Payor by the Velo team, and issued with your 
 initial API keys (which you’ll use in the example code). Please contact your [Velo representative](https://developer.velopayments.com/) 
