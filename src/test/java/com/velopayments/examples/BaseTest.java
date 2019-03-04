@@ -46,24 +46,32 @@ public class BaseTest {
      */
     public void getEnvVariables(){
 
-        apiKey = System.getenv("API_KEY");
-        apiSecret = System.getenv("API_SECRET");
-        payorId = System.getenv("PAYOR_ID");
+        apiKey = System.getenv("VELO_API_APIKEY");
+        apiSecret = System.getenv("VELO_API_APISECRET");
+        payorId = System.getenv("VELO_API_PAYORID");
 
         if (apiKey == null || apiKey.isEmpty()) {
-            apiKey = System.getProperty("API_KEY");
+            apiKey = System.getProperty("VELO_API_APIKEY");
         }
 
         if (apiSecret == null || apiSecret.isEmpty()) {
-            apiSecret = System.getProperty("API_SECRET");
+            apiSecret = System.getProperty("VELO_API_APISECRET");
         }
 
         if (payorId == null || payorId.isEmpty()) {
-            payorId = System.getProperty("PAYOR_ID");
+            payorId = System.getProperty("VELO_API_PAYORID");
         }
 
         if (apiKey == null || apiKey.isEmpty()){
             System.out.println("#######  WARNING API KEY NOT SET  #######");
+        }
+
+        if (apiSecret == null || apiSecret.isEmpty()){
+            System.out.println("#######  WARNING API SECRET NOT SET  #######");
+        }
+
+        if (payorId == null || payorId.isEmpty()){
+            System.out.println("#######  WARNING PAYEE ID NOT SET  #######");
         }
     }
 }
