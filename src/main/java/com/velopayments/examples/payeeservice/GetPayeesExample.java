@@ -49,7 +49,7 @@ public class GetPayeesExample {
     }
 
     public static String getPayees(String apiAccessToken, String payorId, HttpClient httpClient) throws Exception {
-        String apiUrl = "https://api.sandbox.velopayments.com/v1/payees";
+        String apiUrl = "https://api.sandbox.velopayments.com/v4/payees";
 
         // Query parameters
         String apiUrlWithQueryParams = apiUrl + "/?payorId=" + payorId;
