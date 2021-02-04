@@ -43,7 +43,7 @@ public class InvitePayeeExample {
     }
 
     public static String invitePayee(String apiKey, String apiSecret, String payorId , HttpClient httpClient) throws IOException {
-        String apiUrl = "https://api.sandbox.velopayments.com/v2/payees";
+        String apiUrl = "https://api.sandbox.velopayments.com/v4/payees";
 
         //random string to keep email unique
         String randomString = RandomStringUtils.randomAlphabetic(10);
