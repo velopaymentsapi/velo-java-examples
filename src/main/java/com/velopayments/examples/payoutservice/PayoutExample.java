@@ -28,7 +28,7 @@ import java.util.*;
 
 public class PayoutExample {
 
-    public static final String PAYOUT_URL = "https://api.sandbox.velopayments.com/v2/payouts";
+    public static final String PAYOUT_URL = "https://api.sandbox.velopayments.com/v3/payouts";
 
     /**
      * Usage - parameter 1 = Velo API Key
@@ -89,15 +89,36 @@ public class PayoutExample {
         httpHeaders.add(new HttpClient.HttpHeader("Content-Type", "application/json"));
 
         HttpClient.HttpResponse submitPayoutResponse = httpClient.post(PAYOUT_URL, httpHeaders, payoutRequestJson, HttpClient.ContentType.JSON);
-
-        //Instruct Payout
+        // get payoutId from submit response
         JsonNode submitPayoutJsonNode = objectMapper.readValue(submitPayoutResponse.getBody(), JsonNode.class);
 
         String payoutId = submitPayoutJsonNode.get("payoutId").asText();
 
         System.out.println("Submitted Payout Id: " + payoutId);
 
-        HttpClient.HttpResponse instructPayoutResonse = httpClient.post(PAYOUT_URL + "/" + payoutId, httpHeaders, payoutRequestJson, HttpClient.ContentType.JSON);
+        //Poll payout for ACCEPTED Status
+        for(int i = 0; i < 6; i++) {
+            //Pause for 5 seconds
+            Thread.sleep(5000);
+
+            HttpClient.HttpResponse getPayoutResponse = httpClient.get(PAYOUT_URL + "/" + payoutId, httpHeaders);
+            JsonNode getPayoutJsonNode = objectMapper.readValue(getPayoutResponse.getBody(), JsonNode.class);
+            String payoutStatus = getPayoutJsonNode.get("status").asText();
+            if (payoutStatus.equals("ACCEPTED")) {break; }
+            if (i >= 5) {
+                return String.valueOf(getPayoutResponse.getCode());
+            }
+
+        }
+        //Quote Payout
+        System.out.println("Quote Payout Id: " + payoutId);
+        HttpClient.HttpResponse quotePayoutResonse = httpClient.post(PAYOUT_URL + "/" + payoutId + "/quote", httpHeaders, null, HttpClient.ContentType.JSON);
+        JsonNode getPayoutJsonNode = objectMapper.readValue(quotePayoutResonse.getBody(), JsonNode.class);
+
+        //Instruct Payout
+        System.out.println("Instruct Payout Id: " + payoutId);
+
+        HttpClient.HttpResponse instructPayoutResonse = httpClient.post(PAYOUT_URL + "/" + payoutId, httpHeaders, null, HttpClient.ContentType.JSON);
 
         return String.valueOf(instructPayoutResonse.getCode());
     }
