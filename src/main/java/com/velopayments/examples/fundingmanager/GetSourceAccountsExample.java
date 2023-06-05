@@ -55,7 +55,7 @@ public class GetSourceAccountsExample {
     }
 
     public static String getSourceAccounts(String apiAccessToken, String payorId, HttpClient httpClient) throws IOException {
-        String apiUrl = "https://api.sandbox.velopayments.com/v1/sourceAccounts";
+        String apiUrl = "https://api.sandbox.velopayments.com/v3/sourceAccounts";
 
         // Query parameters
         String apiUrlWithQueryParams = apiUrl + "/?payorId=" + payorId;

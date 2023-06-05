@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.velopayments.examples.payorservice;
+package com.velopayments.examples.fundingmanager;
 
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 
-public class GetPayorDetailsByIdExample {
+public class GetFundingAccountsExample {
 
     /**
      * Usage - parameter 1 = Velo API Key
@@ -35,28 +35,38 @@ public class GetPayorDetailsByIdExample {
      * @param args
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
-        getPayorDetails(args[0], args[1], args[3]);
+    public static void main(String[] args) throws Exception {
+        getFundingAccounts(args[0], args[1], args[3]);
     }
 
-    public static String getPayorDetails(String apiKey, String apiSecret, String payorId) throws IOException {
-        return getPayorDetails(apiKey, apiSecret, payorId, new ApacheHttpClient());
+    public static String getFundingAccounts(String apiKey, String apiSecret, String payorId) throws IOException {
+        return getFundingAccounts(apiKey, apiSecret, payorId, new ApacheHttpClient());
     }
 
-    public static String getPayorDetails(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws IOException {
-        String apiUrl = "https://api.sandbox.velopayments.com/v2/payors/";
-
-        //Get API Access Token
+    public static String getFundingAccounts(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws IOException {
+        //Get API Acc
         String apiAccessToken = AuthenticationExample.getApiToken(apiKey, apiSecret);
 
-        // Path parameters
-        String apiUrlWithQueryParams = apiUrl + payorId;
+        return getFundingAccounts(apiAccessToken, payorId, httpClient);
+    }
+
+    public static String getFundingAccounts(String apiAccessToken, String payorId) throws IOException {
+        return getFundingAccounts(apiAccessToken, payorId, new ApacheHttpClient());
+    }
+
+    public static String getFundingAccounts(String apiAccessToken, String payorId, HttpClient httpClient) throws IOException {
+        String apiUrl = "https://api.sandbox.velopayments.com/v2/fundingAccounts";
+
+        // Query parameters
+        String apiUrlWithQueryParams = apiUrl + "/?payorId=" + payorId;
 
         //Set auth header
         Collection<HttpClient.HttpHeader> httpHeaders = Collections.checkedList(new LinkedList<>(), HttpClient.HttpHeader.class);
         httpHeaders.add(new HttpClient.HttpHeader("Authorization", "Bearer " + apiAccessToken));
         httpHeaders.add(new HttpClient.HttpHeader("Content-Type", "application/json"));
 
-        return String.valueOf(httpClient.get(apiUrlWithQueryParams, httpHeaders).getCode());
+        HttpClient.HttpResponse apiResponse = httpClient.get(apiUrlWithQueryParams, httpHeaders);
+
+        return apiResponse.getBody();
     }
 }
