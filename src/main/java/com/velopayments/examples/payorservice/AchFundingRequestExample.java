@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velopayments.api.ApacheHttpClient;
 import com.velopayments.api.HttpClient;
 import com.velopayments.examples.authentication.AuthenticationExample;
+import com.velopayments.examples.fundingmanager.GetFundingAccountsExample;
 import com.velopayments.examples.fundingmanager.GetSourceAccountsExample;
 
 import java.io.IOException;
@@ -45,11 +46,19 @@ public class AchFundingRequestExample {
     }
 
     public static String achFundingRequest(String apiKey, String apiSecret, String payorId, HttpClient httpClient) throws IOException {
-        String apiUrl = "https://api.sandbox.velopayments.com/v1/sourceAccounts/";
-        String apiAction = "/achFundingRequest";
+        String apiUrl = "https://api.sandbox.velopayments.com/v3/sourceAccounts/";
+        String apiAction = "/fundingRequest";
 
         //Get API Access Token
         String apiAccessToken = AuthenticationExample.getApiToken(apiKey, apiSecret);
+
+        //get funding account name
+        String fundingAccountsResponse = GetFundingAccountsExample.getFundingAccounts(apiAccessToken, payorId);
+
+        ObjectMapper fundingObjectMapper = new ObjectMapper();
+        JsonNode fundingJsonNode = fundingObjectMapper.readValue(fundingAccountsResponse, JsonNode.class);
+        System.out.println(fundingJsonNode);
+        String fundingAccountId = fundingJsonNode.get("content").iterator().next().get("id").asText();
 
         //get source account id
         String sourceAccountsResponse = GetSourceAccountsExample.getSourceAccounts(apiAccessToken, payorId);
@@ -63,6 +72,7 @@ public class AchFundingRequestExample {
 
         Map<String, Object> fundingRequest = new HashMap<>();
 
+        fundingRequest.put("fundingAccountId", fundingAccountId);
         fundingRequest.put("amount", BigDecimal.valueOf(19.90));
 
         //create json object
@@ -91,4 +101,5 @@ public class AchFundingRequestExample {
 
         return String.valueOf(apiResponse.getCode());
     }
+
 }
