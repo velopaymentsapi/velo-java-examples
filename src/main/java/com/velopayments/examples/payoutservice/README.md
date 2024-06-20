@@ -1,12 +1,15 @@
 # Payout Example
 
-It is important to understand payouts are a 2 phase process. First, submit a payout. This request will have a list of 
+It is important to understand payouts are a 3 phase process. First, submit a payout. This request will have a list of 
 payees and payment amounts. The result of this action will provide a payoutId. At this point the payout is created, assuming
 validations passed.
+Submission and validation is an asynchronous process. The payoutId Should be polled until validation is complete and the payout is in ACCEPTED status.
 
 **Payees which have not confirmed their accounts cannot receive payments.** 
 
-Second phase is to instruct (ie confirm) the payout. Performed by a POST action referencing the payoutId.
+Second phase Once a payout is in ACCEPTED status, it may be Quoted. instructed.
+
+Third phase is Instructing a payout. Instruction is the final step in sending the payments it contains to payees. Payout Instruction is performed by a POST action referencing the payoutId.
 
 For this example to work properly:
 
@@ -18,7 +21,9 @@ For this example to work properly:
 3. Receive the email and complete the onboarding process.
 4. Create batch payments using the unique identifier (remoteId) for each payee. 
 5. Capture payoutId returned by API.
-6. Instruct payout with POST action using payoutId.
+6. Poll payoutId for ACCEPTED status.
+7. Quote the payout using the payoutId.
+8. Instruct payout with POST action using payoutId.
 
 This example as is, typically does not have confirmed payees, thus will fail. 
 
